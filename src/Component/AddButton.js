@@ -6,43 +6,54 @@ class AddButton extends PureComponent {
     constructor() {
         super()
         this.state = {
-          
-            Name:'',
-            phone:'',
-            email:'',
-            pass:'',
-            conpass:''
-          
+
+            FirstName: '',
+            LastName: '',
+            Phone: '',
+            Email: '',
+            Bloodgroup: '',
+            Age: '',
+            Weight: ''
+
         }
     }
 
-    entername = (e) =>{
-           let val=e.target.value;
-             console.log(val);
-           this.setState({Name : val});
-          
+    enterfirstname = (e) => {
+        let val = e.target.value;
+        this.setState({ FirstName: val });
+
     }
-     
 
-    enterphoneno = (e) =>{
-        let val=e.target.value;
-        this.setState({phone : val});
- }
+    enterlastname = (e) => {
+        let val = e.target.value;
+        this.setState({ LastName: val });
 
- enteremail = (e) =>{
-    let val=e.target.value;
-    this.setState({email : val});
-}
+    }
 
-enterpass = (e) =>{
-    let val=e.target.value;
-    this.setState({pass : val});
-}
+    enterphoneno = (e) => {
+        let val = e.target.value;
+        this.setState({ Phone: val });
+    }
 
-enterconpass = (e) =>{
-    let val=e.target.value;
-    this.setState({conpass : val});
-}
+    enteremail = (e) => {
+        let val = e.target.value;
+        this.setState({ Email: val });
+    }
+
+    enterbloodgroup = (e) => {
+        let val = e.target.value;
+        this.setState({ Bloodgroup: val });
+    }
+
+    enterage = (e) => {
+        let val = e.target.value;
+        this.setState({ Age: val });
+    }
+
+    enterweight = (e) => {
+        let val = e.target.value;
+        this.setState({ Weight: val });
+    }
 
 
 
@@ -51,49 +62,78 @@ enterconpass = (e) =>{
             <div>
                 <Form>
                     <label>
-                        Name :
-                        <Input value={this.state.Name} placeholder='Enter name' name="name" 
-                          
-                        onChange={this.entername} />
+                        First Name :
+                        <Input value={this.state.FirstName} placeholder='Enter first name' name="name"
+
+                            onChange={this.enterfirstname} />
+                    </label>
+                    <label>
+                        Last Name :
+                        <Input value={this.state.LastName} placeholder='Enter last name' name="name"
+
+                            onChange={this.enterlastname} />
                     </label>
                     <label>
                         Phone no. :
                         <Input style={{ width: '100%' }} placeholder="+91 7484977543"
-                        value={this.state.phone} name="name" 
-                        onChange={this.enterphoneno}/>
+                            value={this.state.Phone} name="name"
+                            type="number"
+                            onChange={this.enterphoneno} />
                     </label>
                     <label>
                         Email :
-                        <Input name="name" value={this.state.email} placeholder="Enter email"
-                        onChange={this.enteremail}/>
+                        <Input name="name" value={this.state.Email} placeholder="Enter Email"
+                            type="email"
+                            onChange={this.enteremail} />
                     </label>
                     <label>
-                        Passward:
-                        <Input.Password placeholder="password" value={this.state.pass}
-                        onChange={this.enterpass}/>
+                        Blood Group :
+                        <Input name="name" value={this.state.Bloodgroup} placeholder="Enter Blood Group"
+                            onChange={this.enterbloodgroup} />
                     </label>
                     <label>
-                       Confirm Passward:
-                        <Input.Password placeholder="password" value={this.state.conpass}
-                        onChange={this.enterconpass}/>
+                        Age :
+                        <Input placeholder=" Enter age " value={this.state.Age}
+                        type="number"
+                            onChange={this.enterage} />
+                    </label>
+                    <label>
+                        Weight :
+                        <Input  placeholder=" Enter weight " value={this.state.Weight}
+                        type="number"
+                            onChange={this.enterweight} />
                     </label>
                     <Button
                         onClick={() => {
-                            let userdetails={
-                                userName : this.state.Name,
-                                userPhoneNo :this.state.phone,
-                                userEmail : this.state.email,
-                                userPass : this.state.pass,
-                                userConPass : this.state.conpass
+                            let userdetails = {
+                                firstName: this.state.FirstName,
+                                lastName: this.state.LastName,
+                                phone: this.state.Phone,
+                                email: this.state.Email,
+                                bloodgroup: this.state.Bloodgroup,
+                                age: this.state.Age,
+                                weight: this.state.Weight
                             }
-                        this.props.incrementCounter(userdetails);
-                        this.setState({
-                        Name:'',
-                        phone:'',
-                        email:'',
-                        pass:'',
-                        conpass:''})
-                        }}>Button</Button>
+                            if (userdetails.firstName === '' || userdetails.phone === '' ||
+                                userdetails.email === '' || userdetails.age === '' ||
+                                userdetails.weight === '' || userdetails.bloodgroup === '') {
+                                alert("Please fill all the required detail")
+                            }
+                            else {
+                                
+                                    this.props.Adduser(userdetails);
+                                    this.setState({
+                                        FirstName: '',
+                                        LastName: '',
+                                        Phone: '',
+                                        Email: '',
+                                        Bloodgroup: '',
+                                        Age: '',
+                                        Weight: ''
+                                    })
+                                
+                            }
+                        }}>Add</Button>
 
 
                 </Form>
